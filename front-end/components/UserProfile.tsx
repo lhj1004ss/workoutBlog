@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import { Card, Avatar } from 'antd'
 import NickNameEdit from '../components/NickNameEdit'
 import Logout from '../components/Logout'
+import Follow from './Follow'
 
 type Props = {
   setIsLogin: (value: boolean) => void
@@ -16,15 +17,8 @@ const UserProfile = ({ setIsLogin }: Props) => {
           <br />
           <span>0</span>
         </div>,
-        <div key='followings'>
-          connections
-          <br />
-          <span>0</span>
-        </div>,
-        <div key='followers'>
-          connect <br />
-          <span>0</span>
-        </div>,
+        <Follow title="Let's see who you are following" header='followings' />,
+        <Follow title="Let's see who is following you" header='followers' />,
       ]}>
       <Card.Meta avatar={<Avatar>HJ</Avatar>}></Card.Meta>
       <NickNameEdit />
