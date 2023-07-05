@@ -9,7 +9,7 @@ const SignUp = () => {
         <meta chartset='utf-8' />
         <title>Workout | SignUp</title>
       </Head>
-      <AppLayout>SignUp</AppLayout>
+      SignUp
     </>
   )
 }

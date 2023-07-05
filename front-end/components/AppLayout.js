@@ -15,16 +15,16 @@ const AppLayout = ({ children }) => {
     <>
       <Menu mode="horizontal">
         <Menu.Item>
-          <Link href="/">home</Link>
+          <Link href="/">Home</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link href="/profile">profile</Link>
+          <Link href="/profile">Profile</Link>
         </Menu.Item>
         <Menu.Item>
           <SearchInput enterButton />
         </Menu.Item>
         <Menu.Item>
-          <Link href="/signup">signup</Link>
+          <Link href="/signup">SignUp</Link>
         </Menu.Item>
       </Menu>
       <Row gutter={8}>

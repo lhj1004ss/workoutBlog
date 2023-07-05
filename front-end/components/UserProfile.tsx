@@ -1,16 +1,13 @@
-import React, { useCallback } from 'react'
-import { Card, Avatar, Button } from 'antd'
+import React, { useCallback, useState } from 'react'
+import { Card, Avatar } from 'antd'
 import NickNameEdit from '../components/NickNameEdit'
+import Logout from '../components/Logout'
 
 type Props = {
   setIsLogin: (value: boolean) => void
 }
 
 const UserProfile = ({ setIsLogin }: Props) => {
-  const onLogOut = useCallback(() => {
-    setIsLogin(false)
-  }, [])
-
   return (
     <Card
       actions={[
@@ -31,7 +28,7 @@ const UserProfile = ({ setIsLogin }: Props) => {
       ]}>
       <Card.Meta avatar={<Avatar>HJ</Avatar>}></Card.Meta>
       <NickNameEdit />
-      <Button onClick={onLogOut}>Logout</Button>
+      <Logout setIsLogin={setIsLogin} />
     </Card>
   )
 }
