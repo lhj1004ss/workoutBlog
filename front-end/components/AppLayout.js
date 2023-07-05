@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Link from 'next/link'
 import { Input, Menu, Row, Col } from 'antd'
 import UserProfile from "./UserProfile";
-import LoginForm from "./LoginForm";
+import LoginForm from "./form/LoginForm";
 import styled from 'styled-components'
 
 const SearchInput = styled(Input.Search)`
