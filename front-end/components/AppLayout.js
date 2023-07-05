@@ -29,7 +29,7 @@ const AppLayout = ({ children }) => {
       </Menu>
       <Row gutter={8}>
         <Col xs={24} md={6} >
-          {isLogin ? <UserProfile /> : <LoginForm />}
+          {isLogin ? <UserProfile /> : <LoginForm setIsLogin={setIsLogin} />}
         </Col>
         <Col xs={24} md={12} >
           {children}
