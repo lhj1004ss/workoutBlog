@@ -14,6 +14,9 @@ const LoginForm = ({ setIsLogin }: Props) => {
   const ButtonWrapper = styled.div`
     margin-top: 10px;
   `
+  // const FormWrapper = styled(Form)`
+  //   padding: 10px;
+  // `
 
   const onChangeEmail = useCallback((email: string) => {
     setEmail(email)
@@ -22,16 +25,13 @@ const LoginForm = ({ setIsLogin }: Props) => {
     setPassword(password)
   }, [])
 
-  const onSubmitForm = useCallback(
-    (e) => {
-      console.log(email, password)
-      setIsLogin(true)
-    },
-    [email, password]
-  )
+  const onSubmitForm = useCallback(() => {
+    console.log(email, password)
+    setIsLogin(true)
+  }, [email, password])
 
   return (
-    <Form onFinish={onSubmitForm}>
+    <Form style={{ padding: 10 }} onFinish={onSubmitForm}>
       <div>
         <label htmlFor='user-email'>E-mail</label>
         <br />
