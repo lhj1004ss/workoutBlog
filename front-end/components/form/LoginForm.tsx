@@ -2,28 +2,19 @@ import React, { useState, useCallback } from 'react'
 import { Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import styled from 'styled-components'
+import useInput from '../hooks/useInput'
 
 type Props = {
   setIsLogin: (value: boolean) => void
 }
 
 const LoginForm = ({ setIsLogin }: Props) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, onChangeEmail] = useInput('')
+  const [password, onChangePassword] = useInput('')
 
   const ButtonWrapper = styled.div`
     margin-top: 10px;
   `
-  // const FormWrapper = styled(Form)`
-  //   padding: 10px;
-  // `
-
-  const onChangeEmail = useCallback((email: string) => {
-    setEmail(email)
-  }, [])
-  const onChangePassword = useCallback((password: string) => {
-    setPassword(password)
-  }, [])
 
   const onSubmitForm = useCallback(() => {
     console.log(email, password)
