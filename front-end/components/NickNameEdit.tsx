@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import React, { useState } from 'react'
-import BasicModal from './modal/BasicModal'
+import BasicModal from '../components/modal/BasicModal'
 import { EditOutlined } from '@ant-design/icons'
 
 const NickNameEdit = () => {

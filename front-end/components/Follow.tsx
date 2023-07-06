@@ -1,8 +1,7 @@
 import { Input } from 'antd'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import BasicModal from './modal/BasicModal'
-
+import BasicModal from '../components/modal/BasicModal'
 type Props = {
   title: string
   header: string

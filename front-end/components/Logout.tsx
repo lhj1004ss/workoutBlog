@@ -1,6 +1,6 @@
 import { Button } from 'antd'
 import React, { useState, useCallback } from 'react'
-import BasicModal from './modal/BasicModal'
+import BasicModal from '../components/modal/BasicModal'
 type Props = {
   setIsLogin: (value: boolean) => void
 }
