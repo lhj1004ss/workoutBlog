@@ -43,9 +43,6 @@ const SignUp = () => {
             // required
             onChange={(e) => onChangeEmail(e.target.value)}
           />
-          {emailError && (
-            <Alert type='error' errorMsg='Please fill out E-mail' />
-          )}
         </div>
         <div>
           <label htmlFor='user-username'>Username</label>
