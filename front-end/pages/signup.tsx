@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Head from 'next/head'
 import useInput from '../components/hooks/useInput'
-import { Form, Input, Button } from 'antd'
-import Alert from '../components/Alert'
+import { Form, Input, Button, Alert } from 'antd'
+// import Alert from '../components/Alert'
 const SignUp = () => {
   const [password, onChangePassword] = useInput('')
   const [userName, onChangeUserName] = useInput('')
@@ -10,16 +10,11 @@ const SignUp = () => {
   const [matchPassword, setMatchPassword] = useState('')
   const [passwordError, setPasswordError] = useState(false)
   const [userNameError, setUserNameError] = useState(false)
+  const [emailError, setEmailError] = useState(false)
 
-  const onSubmit = () => {
-    // if (password !== matchPassword) {
-    //   return setPasswordError(true)
-    // }
-
-    // }
-    // if (!userName.length) return setUserNameError(true)
+  const onSubmit = useCallback(() => {
     console.log(email, userName, password, passwordError, userNameError)
-  }
+  }, [])
 
   const onChangeMatchPassword = useCallback((value: string) => {
     setMatchPassword(value)
@@ -43,6 +38,7 @@ const SignUp = () => {
             // required
             onChange={(e) => onChangeEmail(e.target.value)}
           />
+          {emailError && <Alert message='hello' type='error' showIcon />}
         </div>
         <div>
           <label htmlFor='user-username'>Username</label>
@@ -53,9 +49,7 @@ const SignUp = () => {
             // required
             onChange={(e) => onChangeUserName(e.target.value)}
           />
-          {userNameError && (
-            <Alert type='error' errorMsg='Please fill out username' />
-          )}
+          {userNameError && <Alert message='hello' type='error' showIcon />}
         </div>
         <div>
           <label htmlFor='user-password'>Password</label>
@@ -78,9 +72,8 @@ const SignUp = () => {
             type='password'
             onChange={(e) => onChangeMatchPassword(e.target.value)}
           />
-          {passwordError && (
-            <Alert type='error' errorMsg='Please check your password again' />
-          )}
+
+          {passwordError && <Alert message='hello' type='error' showIcon />}
         </div>
         <Button htmlType='submit' style={{ marginTop: 10 }} type='primary'>
           SignUp

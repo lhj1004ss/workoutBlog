@@ -1,4 +1,5 @@
-const Alert = (errorMsg, type) => {
+import { Alert } from 'antd'
+const AlertMsg = (errorMsg, type) => {
   return <Alert message={errorMsg} type={type} showIcon />
 }
-export default Alert
+export default AlertMsg
