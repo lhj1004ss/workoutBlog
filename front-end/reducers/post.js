@@ -14,14 +14,14 @@ export const initialState = {
         User: { username: 'username3' },
         content: 'awesome!!!'
       }],
-      imagePath: [],
+      imagePaths: [],
       postAdded: false,
     }],
 
 
 }
 const ADD_POST = "ADD_POST"
-export const addPOST = {
+export const addPost = {
   type: ADD_POST,
 
 }
