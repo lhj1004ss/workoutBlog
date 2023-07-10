@@ -4,11 +4,9 @@ import NickNameEdit from '../components/NickNameEdit'
 import Logout from '../components/Logout'
 import Follow from './Follow'
 
-type Props = {
-  setIsLogin: (value: boolean) => void
-}
+type Props = {}
 
-const UserProfile = ({ setIsLogin }: Props) => {
+const UserProfile = ({}) => {
   return (
     <Card
       actions={[
@@ -22,7 +20,7 @@ const UserProfile = ({ setIsLogin }: Props) => {
       ]}>
       <Card.Meta avatar={<Avatar>HJ</Avatar>}></Card.Meta>
       <NickNameEdit />
-      <Logout setIsLogin={setIsLogin} />
+      <Logout />
     </Card>
   )
 }

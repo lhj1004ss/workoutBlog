@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import wrapper from '../store/configureStore'
 
 const MyApp = ({ Component }) => {
   return (
@@ -12,4 +13,4 @@ const MyApp = ({ Component }) => {
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

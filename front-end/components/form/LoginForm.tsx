@@ -1,14 +1,14 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { Form, Input, Button } from 'antd'
 import Link from 'next/link'
 import styled from 'styled-components'
 import useInput from '../hooks/useInput'
+import { useDispatch } from 'react-redux'
+import { loginAction } from '../../reducers'
+type Props = {}
 
-type Props = {
-  setIsLogin: (value: boolean) => void
-}
-
-const LoginForm = ({ setIsLogin }: Props) => {
+const LoginForm = ({}: Props) => {
+  const dispatch = useDispatch()
   const [email, onChangeEmail] = useInput('')
   const [password, onChangePassword] = useInput('')
 
@@ -17,8 +17,8 @@ const LoginForm = ({ setIsLogin }: Props) => {
   `
 
   const onSubmitForm = useCallback(() => {
+    dispatch(loginAction(email, password))
     console.log(email, password)
-    setIsLogin(true)
   }, [email, password])
 
   return (

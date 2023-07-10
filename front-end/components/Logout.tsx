@@ -1,14 +1,15 @@
 import { Button } from 'antd'
 import React, { useState, useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 import BasicModal from '../components/modal/BasicModal'
-type Props = {
-  setIsLogin: (value: boolean) => void
-}
-const Logout = ({ setIsLogin }: Props) => {
+
+type Props = {}
+const Logout = () => {
+  const dispatch = useDispatch()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const logoutHandler = useCallback(() => {
-    setIsLogin(false)
+    dispatch(logoutAction())
   }, [])
 
   return (
