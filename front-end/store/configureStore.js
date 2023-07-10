@@ -2,15 +2,14 @@ import { createWrapper } from 'next-redux-wrapper';
 import { legacy_createStore as createStore, compose, applyMiddleware, } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import reducer from '../reducers'
-import { createLogger } from 'redux-logger'
 
 
 const configureStore = () => {
-  const enhancer = process.env.NODE_NEV === 'production' ? compose(applyMiddleware([]), createLogger()) :
-    composeWithDevTools(applyMiddleware([]), createLogger())
-  console.log('hello', enhancer)
+  const middleware = []
+  const enhancer = process.env.NODE_NEV === 'production' ? compose(applyMiddleware(...middleware)) :
+    composeWithDevTools(applyMiddleware(...middleware))
 
-  const store = createStore(reducer);
+  const store = createStore(reducer, enhancer);
   return store
 }
 
