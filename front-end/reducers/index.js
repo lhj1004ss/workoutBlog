@@ -23,10 +23,9 @@ export const loginAction = (data) => {
     data
   }
 }
-export const logoutAction = (data) => {
+export const logoutAction = () => {
   return {
     type: 'LOG_OUT',
-    data
   }
 }
 
@@ -41,6 +40,16 @@ const rootReducer = (state = initialState, action) => {
           user: action.data,
         }
       }
+    case "LOG_OUT": {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          isloggedIn: false,
+          user: null
+        }
+      }
+    }
   }
 }
 export default rootReducer

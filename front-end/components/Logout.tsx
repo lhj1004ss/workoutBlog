@@ -2,6 +2,7 @@ import { Button } from 'antd'
 import React, { useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import BasicModal from '../components/modal/BasicModal'
+import { logoutAction } from '../reducers'
 
 type Props = {}
 const Logout = () => {
