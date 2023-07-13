@@ -6,11 +6,12 @@ import {
   RetweetOutlined,
   HeartTwoTone,
 } from '@ant-design/icons'
-import { Card, Popover, Button, Avatar } from 'antd'
+import { Card, Popover, Button, Avatar, List } from 'antd'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { UserPost } from '../constants/type'
 import PostImages from './PostImages'
+import CommentForm from './form/CommentFrom'
 
 type Props = {
   post: UserPost
@@ -63,10 +64,25 @@ const PostCard = ({ post }: Props) => {
           avatar={<Avatar>{post.User.username[0]}</Avatar>}
           title={post.User.username}
           description={post.content}></Card.Meta>
-        <Button></Button>
       </Card>
 
-      {isCommentOpen ? <div>comment open</div> : null}
+      {isCommentOpen ? (
+        <>
+          <CommentForm post={post} />
+          <List
+            header={`${post.Comments.length} Comments`}
+            itemLayout='horizontal'
+            dataSource={post.Comments}
+            renderItem={(item) => (
+              <Card style={{ marginBottom: 10 }}>
+                <Card.Meta
+                  title={item.User.username}
+                  description={item.content}
+                  avatar={<Avatar>{item.User.username[0]}</Avatar>}></Card.Meta>
+              </Card>
+            )}></List>
+        </>
+      ) : null}
     </div>
   )
 }

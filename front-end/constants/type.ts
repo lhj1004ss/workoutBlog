@@ -3,7 +3,7 @@ export type UserPost = {
   User: User
   content: string
   Images: Images[]
-  Comments: Comments
+  Comments: Comments[]
   created_at: string
 }
 
