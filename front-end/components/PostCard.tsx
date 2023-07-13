@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import {
   EllipsisOutlined,
   HeartOutlined,
   MessageOutlined,
   RetweetOutlined,
+  HeartTwoTone,
 } from '@ant-design/icons'
 import { Card, Popover, Button, Avatar } from 'antd'
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { UserPost } from '../constants/type'
 import PostImages from './PostImages'
@@ -15,16 +18,30 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const { user } = useSelector((state) => state.user)
-  console.log(user?.id, post.id)
-  // console.log(user && user?.id)
+  const [isLiked, setIsLiked] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+
+  const onClickLike = useCallback(() => {
+    setIsLiked((prev) => !prev)
+  }, [])
+
+  const onClickComment = useCallback(() => {
+    setIsCommentOpen((prev) => !prev)
+  }, [])
   return (
     <div style={{ marginBottom: 20 }}>
       <Card
         cover={post.Images[0] && <PostImages images={post.Images} />}
         actions={[
           <RetweetOutlined key='retweet' />,
-          <HeartOutlined key='heart' />,
-          <MessageOutlined key='comment' />,
+          isLiked ? (
+            <HeartTwoTone twoToneColor='red' onClick={onClickLike} />
+          ) : (
+            <>
+              <HeartOutlined key='heart' onClick={onClickLike} />
+            </>
+          ),
+          <MessageOutlined onClick={onClickComment} key='comment' />,
           <Popover
             key='more'
             content={
@@ -48,8 +65,8 @@ const PostCard = ({ post }: Props) => {
           description={post.content}></Card.Meta>
         <Button></Button>
       </Card>
-      {/* <CommentForm />
-      <Comments /> */}
+
+      {isCommentOpen ? <div>comment open</div> : null}
     </div>
   )
 }
