@@ -10,6 +10,10 @@ const PostForm = () => {
   const [text, setText] = useState('')
   const imageInput = useRef()
 
+  const onChangeImageUpload = useCallback(() => {
+    imageInput.current.click()
+  }, [imageInput.current])
+
   const onSubmit = useCallback(() => {
     dispatch(addPost)
     setText('')
@@ -31,8 +35,9 @@ const PostForm = () => {
         placeholder='Share your workout'
       />
       <div>
-        <input type='file' multiple hidden ref={imageInput} />
-        <Button>Image</Button>
+        <Button type='primary' onClick={onChangeImageUpload}>
+          <input type='file' multiple hidden ref={imageInput} />
+        </Button>
         <Button type='primary' htmlType='submit' style={{ float: 'right' }}>
           Post
         </Button>
@@ -41,9 +46,7 @@ const PostForm = () => {
         {imagePaths.map((key: string) => (
           <div key={key} style={{ display: 'inline-block' }}>
             <img src={key} style={{ width: '200px' }} alt={key} />
-            <div>
-              <Button>Remove</Button>
-            </div>
+            <Button>Remove</Button>
           </div>
         ))}
       </div>

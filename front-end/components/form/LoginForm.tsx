@@ -17,7 +17,7 @@ const LoginForm = ({}: Props) => {
   `
 
   const onSubmitForm = useCallback(() => {
-    dispatch(loginAction(email))
+    dispatch(loginAction({ id: 1, email }))
     console.log(email, password)
   }, [email, password])
 

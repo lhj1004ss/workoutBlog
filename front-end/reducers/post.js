@@ -1,19 +1,19 @@
 export const initialState = {
   mainPosts:
     [{
-      id: 1,
-      User: { id: 1, username: "hyojelee" },
-      content: "hello world",
+      id: 2,
+      User: { id: 2, username: "diffent" },
+      content: "initial dummy data",
       Images: [
         { src: ' image1' },
         { src: 'image2' },
         { src: 'image3' }
       ],
       Comments: [{
-        User: { username: 'username2' },
+        User: { username: 'username2', id: 2 },
         content: 'amazing!!!'
       }, {
-        User: { username: 'username3' },
+        User: { username: 'username3', id: 3 },
         content: 'awesome!!!'
       }],
     }],
@@ -28,10 +28,10 @@ export const addPost = {
 
 const dummyPost = {
   id: 2,
-  content: 'dummy post',
+  content: 'duppy post',
   User: {
     id: 1,
-    username: 'zero'
+    username: 'hyojelee'
   },
   Images: [],
   Comments: []
