@@ -5,6 +5,7 @@ import { addPost } from '../../reducers/post'
 
 const PostForm = () => {
   const { imagePaths } = useSelector((state) => state.post)
+
   const dispatch = useDispatch()
   const [text, setText] = useState('')
   const imageInput = useRef()
@@ -13,12 +14,16 @@ const PostForm = () => {
     dispatch(addPost)
     setText('')
   }, [])
+
   const onChangeText = useCallback((value: string) => {
     setText(value)
   }, [])
 
   return (
-    <Form style={{ margin: '10px 0 20px' }} onFinish={onSubmit}>
+    <Form
+      style={{ margin: '10px 0 20px' }}
+      encType='multipart/form-data'
+      onFinish={onSubmit}>
       <Input.TextArea
         value={text}
         onChange={(e) => onChangeText(e.target.value)}
@@ -26,21 +31,21 @@ const PostForm = () => {
         placeholder='Share your workout'
       />
       <div>
-        <input type='file' hidden ref={imageInput}></input>{' '}
+        <input type='file' multiple hidden ref={imageInput} />
         <Button>Image</Button>
-        <Button type='primary' style={{ float: 'right' }}>
+        <Button type='primary' htmlType='submit' style={{ float: 'right' }}>
           Post
         </Button>
       </div>
       <div>
-        {/* {imagePaths.map((key: string) => (
+        {imagePaths.map((key: string) => (
           <div key={key} style={{ display: 'inline-block' }}>
-            <img src={key} style={{ width: '200px' }} alt={key}></img>
+            <img src={key} style={{ width: '200px' }} alt={key} />
             <div>
               <Button>Remove</Button>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </Form>
   )
