@@ -74,12 +74,14 @@ const PostCard = ({ post }: Props) => {
             itemLayout='horizontal'
             dataSource={post.Comments}
             renderItem={(item) => (
-              <Card style={{ marginBottom: 10 }}>
-                <Card.Meta
+              <List.Item style={{ marginBottom: 10 }}>
+                <List.Item.Meta
                   title={item.User.username}
                   description={item.content}
-                  avatar={<Avatar>{item.User.username[0]}</Avatar>}></Card.Meta>
-              </Card>
+                  avatar={
+                    <Avatar>{item.User.username[0]}</Avatar>
+                  }></List.Item.Meta>
+              </List.Item>
             )}></List>
         </>
       ) : null}
