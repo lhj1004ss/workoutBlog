@@ -3,7 +3,7 @@ export const initialState = {
     [{
       id: 2,
       User: { id: 2, username: "diffent" },
-      content: "initial dummy data",
+      content: "initial dummy data #hash #hello #hi",
       Images: [
         { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
         { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },

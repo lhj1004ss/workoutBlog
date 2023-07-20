@@ -22,7 +22,8 @@
     "**/*.ts",
     "**/*.tsx",
     "utils/torus.js",
-    "utils/eth.js"
+    "utils/eth.js",
+    "components/imageZoom/index.js"
   ],
   "exclude": ["node_modules"]
 }

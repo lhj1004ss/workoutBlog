@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import { UserPost } from '../constants/type'
 import PostImages from './PostImages'
 import CommentForm from './form/CommentFrom'
+import PostCardContent from './PostCardContent'
 
 type Props = {
   post: UserPost
@@ -29,6 +30,7 @@ const PostCard = ({ post }: Props) => {
   const onClickComment = useCallback(() => {
     setIsCommentOpen((prev) => !prev)
   }, [])
+
   return (
     <div style={{ marginBottom: 20 }}>
       <Card
@@ -63,7 +65,7 @@ const PostCard = ({ post }: Props) => {
         <Card.Meta
           avatar={<Avatar>{post.User.username[0]}</Avatar>}
           title={post.User.username}
-          description={post.content}></Card.Meta>
+          description={<PostCardContent postData={post.content} />}></Card.Meta>
       </Card>
 
       {isCommentOpen ? (
