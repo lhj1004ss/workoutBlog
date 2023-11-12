@@ -1,4 +1,4 @@
-import { all, fork, put, take } from 'redux-saga/effects';
+import { all, fork, put, take, takeEvery, takeLatest, delay } from 'redux-saga/effects';
 import axios from 'axios';
 
 function logInAPI(data) {
@@ -7,7 +7,8 @@ function logInAPI(data) {
 
 function* logIn(action) {
   try {
-    const result = yield call(logInAPI, action.data);
+    // const result = yield call(logInAPI, action.data);
+    yield delay(2000)
     yield put({
       type: 'LOG_IN_SUCCESS',
       data: result.data,
@@ -25,7 +26,9 @@ function logOutAPI() {
 
 function* logOut() {
   try {
-    const result = yield call(logOutAPI);
+    // const result = yield call(logOutAPI);
+    yield delay(2000)
+
     yield put({
       type: 'LOG_OUT_SUCCESS',
       data: result.data,
@@ -44,7 +47,8 @@ function addPostAPI(data) {
 
 function* addPost(action) {
   try {
-    const result = yield call(addPostAPI, action.data);
+    // const result = yield call(addPostAPI, action.data);
+    yield delay(2000)
     yield put({
       type: 'ADD_POST_SUCCESS',
       data: result.data,
@@ -57,15 +61,16 @@ function* addPost(action) {
   }
 }
 
+//  takeEvery instead take becasue take event listener? only occurs once
+//  takeLatest only happens the last event when user accidently clicks twice
 function* watchLogin() {
-  yield take("LOG_IN_REQUEST", logIn)
+  yield takeLatest("LOG_IN_REQUEST", logIn)
 }
 function* watchLogOut() {
-  yield take("LOG_OUT_REQUEST", logOut)
+  yield takeLatest("LOG_OUT_REQUEST", logOut)
 }
-
 function* watchAddPost() {
-  yield take("ADD_POST", addPost)
+  yield takeLatest("ADD_POST_REQUEST", addPost)
 }
 
 export default function* rootSaga() {
@@ -74,6 +79,5 @@ export default function* rootSaga() {
     fork(watchLogin),
     fork(watchLogOut),
     fork(watchAddPost),
-
   ])
 }
