@@ -19,7 +19,6 @@ const PostImages = ({ images }: Props) => {
   const onZoom = useCallback(() => {
     setShowImagesZoom(true)
   }, [])
-  console.log(images)
   if (images.length === 1) {
     return (
       <div

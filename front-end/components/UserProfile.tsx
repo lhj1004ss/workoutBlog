@@ -9,7 +9,6 @@ type Props = {}
 
 const UserProfile = ({}) => {
   const { user } = useSelector((state) => state.user)
-  console.log('user', user)
   return (
     <Card
       actions={[
