@@ -8,8 +8,8 @@ import { useSelector } from 'react-redux'
 type Props = {}
 
 const UserProfile = ({}) => {
-  const { user, isLoggedIn } = useSelector((state) => state.user)
-
+  const { user } = useSelector((state) => state.user)
+  console.log('user', user)
   return (
     <Card
       actions={[
@@ -22,8 +22,8 @@ const UserProfile = ({}) => {
         <Follow title="Let's see who is following you" header='followers' />,
       ]}>
       <Card.Meta
-        avatar={<Avatar>{user.username[0]}</Avatar>}
-        title={user.username}></Card.Meta>
+        avatar={<Avatar>{user?.username[0]}</Avatar>}
+        title={user?.username}></Card.Meta>
       <NickNameEdit />
       <Logout />
     </Card>
