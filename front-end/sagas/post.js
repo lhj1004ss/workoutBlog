@@ -1,5 +1,6 @@
 import { all, takeLatest, put, fork } from "redux-saga/effects";
 import axios from 'axios';
+import { actionTypes } from '../constants/action'
 
 function addPostAPI(data) {
   return axios.post('/api/post', data)
@@ -10,13 +11,13 @@ function* addPost(action) {
     // const result = yield call(addPostAPI, action.data);
     yield delay(2000)
     yield put({
-      type: 'ADD_POST_SUCCESS',
+      type: actionTypes.ADD_POST_SUCCESS,
       data: result.data,
     })
   } catch (err) {
     yield put({
-      type: 'ADD_POST_FAILURE',
-      data: err.response.data,
+      type: actionTypes.ADD_POST_FAILURE,
+      error: err.response.data,
     })
   }
 }
@@ -25,7 +26,7 @@ function* addPost(action) {
 //  takeLatest only happens the last event when user accidently clicks twice
 
 function* watchAddPost() {
-  yield takeLatest("ADD_POST_REQUEST", addPost)
+  yield takeLatest(actionTypes.ADD_POST_REQUEST, addPost)
 }
 
 export default function* postSaga() {

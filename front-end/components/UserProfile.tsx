@@ -21,13 +21,13 @@ const UserProfile = ({}) => {
           key='followings'
           title="Let's see who you are following"
           header='followings'
-          follow={user.followings.length}
+          // follow={user.followings.length}
         />,
         <Follow
           key='followers'
           title="Let's see who is following you"
           header='followers'
-          follow={user.followers.length}
+          // follow={user.followers.length}
         />,
       ]}>
       <Card.Meta

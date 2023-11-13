@@ -1,89 +1,100 @@
+import { actionTypes } from '../constants/action'
 
 export const initialState = {
-  isLoggingIn: false,
-  isLoggedIn: false,
-  isLoggingOut: false,
-  signUpLoading: false,
+  isLoggedInLoading: false,
+  isLoggedInCompleted: false,
+  isLoggedInError: null,
+
+  isLoggedOutLoading: false,
+  isLoggedOutCompleted: false,
+  isLoggedOutError: null,
+
+  isSignedUpLoading: false,
+  isSignedUpCompleted: false,
+  isSignedUpError: null,
+
   user: null,
   signUpData: {},
   loginData: {}
 }
-// action creator
-const editUsernameAction = (data) => {
-  return {
-    type: "EDIT_USERNAME",
-    data
-  }
-}
 
 export const loginRequestAction = (data) => {
   return {
-    type: 'LOG_IN_REQUEST',
+    type: actionTypes.LOG_IN_REQUEST,
     data
   }
 }
 export const logoutRequestAction = () => {
   return {
-    type: 'LOG_OUT_REQUEST',
+    type: actionTypes.LOG_OUT_REQUEST,
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOG_IN_REQUEST":
+    case actionTypes.LOG_IN_REQUEST:
       return {
         ...state,
-        isLoggingIn: true,
+        isLoggedInLoading: true,
+        isLoggedInError: null,
+        isLoggedInCompleted: false,
       }
-    case "LOG_IN_SUCCESS":
+    case actionTypes.LOG_IN_SUCCESS:
       return {
         ...state,
-        isLoggingIn: false,
-        isLoggedIn: true,
-        user: { ...action.data, username: "hyoje lee test" },
+        isLoggedInLoading: false,
+        isLoggedInCompleted: true,
+        user: { ...action.data, username: "hyoje lee test", id: 1, Posts: [], Followings: [], Followers: [] },
       }
-    case "LOG_IN_FAILURE":
+    case actionTypes.LOG_IN_FAILURE:
       return {
         ...state,
-        isLoggingIn: false,
-        isLoggedIn: false,
+        isLoggedInLoading: false,
+        isLoggedInError: action.error,
       }
 
-    case "LOG_OUT_REQUEST": {
+    case actionTypes.LOG_OUT_REQUEST: {
       return {
         ...state,
-        isLoggingOut: true,
-        user: null
+        isLoggedOutLoading: true,
+        isLoggedOutCompleted: false,
+        isLoggedOutError: null,
       }
     }
-    case "LOG_OUT_SUCCESS": {
+    case actionTypes.LOG_OUT_SUCCESS: {
       return {
         ...state,
-        isLoggingOut: false,
-        isLoggedIn: false,
+        isLoggedOutLoading: false,
+        isLoggedOutCompleted: true,
+        user: null,
       }
     }
-    case "LOG_OUT_FAILURE": {
+    case actionTypes.LOG_OUT_FAILURE: {
       return {
         ...state,
-        isLoggingOut: false,
+        isLoggedOutLoading: false,
+        isLoggedOutError: action.error,
       }
     }
 
-    case "SIGN_UP_REQUEST": {
+    case actionTypes.SIGN_UP_REQUEST: {
       return {
         ...state,
-        signUpLoading: true,
+        isSignedUpLoading: true,
+        isSignedUpCompleted: false,
+        isSignedUpError: null,
       }
-    } case "SIGN_UP_SUCCESS": {
+    } case actionTypes.SIGN_UP_SUCCESS: {
       return {
         ...state,
-        signUpLoading: false,
+        isSignedUpLoading: false,
+        isSignedUpCompleted: true,
       }
-    } case "SIGN_UP_FAILURE": {
+    } case actionTypes.SIGN_UP_FAILURE: {
       return {
         ...state,
-        signUpLoading: false,
+        isSignedUpLoading: false,
+        isSignedUpError: action.error,
       }
     }
 

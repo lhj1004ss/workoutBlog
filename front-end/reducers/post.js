@@ -1,3 +1,4 @@
+import { actionTypes } from "../constants/action"
 export const initialState = {
   mainPosts:
     [{
@@ -21,9 +22,8 @@ export const initialState = {
   postAdded: false,
 }
 
-const ADD_POST = "ADD_POST"
 export const addPost = (data) => ({
-  type: ADD_POST,
+  type: actionTypes.ADD_POST_REQUEST,
   data,
 })
 
@@ -40,11 +40,20 @@ const dummyPost = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case actionTypes.ADD_POST_REQUEST:
+
+    case actionTypes.ADD_POST_SUCCESS:
       return {
         ...state,
         mainPosts: [dummyPost, ...state.mainPosts],
         postAdded: true
+      }
+
+    case actionTypes.ADD_POST_FAILURE:
+      return {
+        ...state,
+        mainPosts: [dummyPost, ...state.mainPosts],
+        postAdded: false
       }
     default:
       return state;
