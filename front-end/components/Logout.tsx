@@ -1,21 +1,24 @@
 import { Button } from 'antd'
 import React, { useState, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import BasicModal from '../components/modal/BasicModal'
-import { logoutAction } from '../reducers/user'
+import { logoutRequestAction } from '../reducers/user'
 
 type Props = {}
 const Logout = () => {
   const dispatch = useDispatch()
+  const { isLoggingOut } = useSelector((state) => state.user)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const logoutHandler = useCallback(() => {
-    dispatch(logoutAction())
+    dispatch(logoutRequestAction())
   }, [])
 
   return (
     <>
-      <Button onClick={() => setIsModalOpen(true)}>Logout</Button>
+      <Button loading={isLoggingOut} onClick={() => setIsModalOpen(true)}>
+        Logout
+      </Button>
       <BasicModal
         title='We are sad to say goodbye, See you again!'
         isModalOpen={isModalOpen}

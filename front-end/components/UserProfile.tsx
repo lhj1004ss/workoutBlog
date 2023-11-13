@@ -3,10 +3,13 @@ import { Card, Avatar } from 'antd'
 import NickNameEdit from '../components/NickNameEdit'
 import Logout from '../components/Logout'
 import Follow from './Follow'
+import { useSelector } from 'react-redux'
 
 type Props = {}
 
 const UserProfile = ({}) => {
+  const { user, isLoggedIn } = useSelector((state) => state.user)
+
   return (
     <Card
       actions={[
@@ -18,7 +21,9 @@ const UserProfile = ({}) => {
         <Follow title="Let's see who you are following" header='followings' />,
         <Follow title="Let's see who is following you" header='followers' />,
       ]}>
-      <Card.Meta avatar={<Avatar>HJ</Avatar>}></Card.Meta>
+      <Card.Meta
+        avatar={<Avatar>{user.username[0]}</Avatar>}
+        title={user.username}></Card.Meta>
       <NickNameEdit />
       <Logout />
     </Card>

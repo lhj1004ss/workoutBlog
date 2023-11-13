@@ -1,6 +1,8 @@
 
 export const initialState = {
+  isLoggingIn: false,
   isLoggedIn: false,
+  isLoggingOut: false,
   user: null,
   signUpData: {},
   loginData: {}
@@ -13,32 +15,57 @@ const editUsernameAction = (data) => {
   }
 }
 
-export const loginAction = (data) => {
+export const loginRequestAction = (data) => {
   return {
-    type: 'LOG_IN',
+    type: 'LOG_IN_REQUEST',
     data
   }
 }
-export const logoutAction = () => {
+export const logoutRequestAction = () => {
   return {
-    type: 'LOG_OUT',
+    type: 'LOG_OUT_REQUEST',
   }
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOG_IN":
+    case "LOG_IN_REQUEST":
       return {
         ...state,
+        isLoggingIn: true,
+      }
+    case "LOG_IN_SUCCESS":
+      return {
+        ...state,
+        isLoggingIn: false,
         isLoggedIn: true,
-        user: action.data,
+        user: { ...action.data, username: "hyoje lee test" },
+      }
+    case "LOG_IN_FAILURE":
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: false,
       }
 
-    case "LOG_OUT": {
+    case "LOG_OUT_REQUEST": {
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggingOut: true,
         user: null
+      }
+    }
+    case "LOG_OUT_SUCCESS": {
+      return {
+        ...state,
+        isLoggingOut: false,
+        isLoggedIn: false,
+      }
+    }
+    case "LOG_OUT_FAILURE": {
+      return {
+        ...state,
+        isLoggingOut: false,
       }
     }
 
