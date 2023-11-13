@@ -11,7 +11,7 @@ const LoginForm = ({}: Props) => {
   const dispatch = useDispatch()
   const { isLoggingIn } = useSelector((state) => state.user)
   const [email, onChangeEmail] = useInput('')
-  const [password, onChangePassword] = useInput('')
+  const [password, onChangㄱePassword] = useInput('')
 
   const ButtonWrapper = styled.div`
     margin-top: 10px;

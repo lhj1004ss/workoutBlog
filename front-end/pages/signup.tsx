@@ -2,8 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Head from 'next/head'
 import useInput from '../components/hooks/useInput'
 import { Form, Input, Button, Alert } from 'antd'
-// import Alert from '../components/Alert'
+import { useDispatch, useSelector } from 'react-redux'
+
 const SignUp = () => {
+  const dispatch = useDispatch()
+  const { signUpLoading } = useSelector((state) => state.user)
+
   const [password, onChangePassword] = useInput('')
   const [userName, onChangeUserName] = useInput('')
   const [email, onChangeEmail] = useInput('')
@@ -14,6 +18,11 @@ const SignUp = () => {
 
   const onSubmit = useCallback(() => {
     console.log(email, userName, password, passwordError, userNameError)
+
+    dispatch({
+      type: 'SIGN_UP_REQUEST',
+      data: { email, userName, password },
+    })
   }, [])
 
   const onChangeMatchPassword = useCallback((value: string) => {
@@ -75,7 +84,11 @@ const SignUp = () => {
 
           {passwordError && <Alert message='hello' type='error' showIcon />}
         </div>
-        <Button htmlType='submit' style={{ marginTop: 10 }} type='primary'>
+        <Button
+          htmlType='submit'
+          style={{ marginTop: 10 }}
+          type='primary'
+          loading={signUpLoading}>
           SignUp
         </Button>
       </Form>

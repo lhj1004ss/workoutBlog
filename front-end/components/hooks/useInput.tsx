@@ -5,5 +5,5 @@ export default function useInput(initialValue: any) {
   const inputHandler = useCallback((value: any) => {
     setValue(value)
   }, [])
-  return [value, inputHandler]
+  return [value, inputHandler, setValue]
 }

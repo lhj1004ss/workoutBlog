@@ -3,6 +3,7 @@ export const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
   isLoggingOut: false,
+  signUpLoading: false,
   user: null,
   signUpData: {},
   loginData: {}
@@ -66,6 +67,23 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggingOut: false,
+      }
+    }
+
+    case "SIGN_UP_REQUEST": {
+      return {
+        ...state,
+        signUpLoading: true,
+      }
+    } case "SIGN_UP_SUCCESS": {
+      return {
+        ...state,
+        signUpLoading: false,
+      }
+    } case "SIGN_UP_FAILURE": {
+      return {
+        ...state,
+        signUpLoading: false,
       }
     }
 

@@ -17,8 +17,18 @@ const UserProfile = ({}) => {
           <br />
           <span>0</span>
         </div>,
-        <Follow title="Let's see who you are following" header='followings' />,
-        <Follow title="Let's see who is following you" header='followers' />,
+        <Follow
+          key='followings'
+          title="Let's see who you are following"
+          header='followings'
+          follow={user.followings.length}
+        />,
+        <Follow
+          key='followers'
+          title="Let's see who is following you"
+          header='followers'
+          follow={user.followers.length}
+        />,
       ]}>
       <Card.Meta
         avatar={<Avatar>{user?.username[0]}</Avatar>}

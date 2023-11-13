@@ -22,9 +22,10 @@ export const initialState = {
 }
 
 const ADD_POST = "ADD_POST"
-export const addPost = {
+export const addPost = (data) => ({
   type: ADD_POST,
-}
+  data,
+})
 
 const dummyPost = {
   id: 2,

@@ -14,7 +14,7 @@ const Profile = () => {
       </Head>
       <AppLayout>
         <FollowList header='follower list' followOrfollowingList={followerList} />
-        <FollowList header='following list' followOrfollowingList={followingList} />
+        {/* <FollowList header='following list' followOrfollowingList={followingList} /> */}
       </AppLayout>
     </>
   )

@@ -1,27 +1,29 @@
 import { Form, Input, Button } from 'antd'
-import React, { useCallback, useState, useRef } from 'react'
+import React, { useCallback, useState, useRef, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPost } from '../../reducers/post'
+import useInput from '../hooks/useInput'
 
 const PostForm = () => {
-  const { imagePaths } = useSelector((state) => state.post)
+  const { imagePaths, addPostDone } = useSelector((state) => state.post)
 
   const dispatch = useDispatch()
-  const [text, setText] = useState('')
+  const [text, onChangeText, setText] = useInput('')
   const imageInput = useRef()
+
+  useEffect(() => {
+    if (addPostDone) {
+      setText('')
+    }
+  }, [addPostDone])
 
   const onChangeImageUpload = useCallback(() => {
     imageInput.current.click()
   }, [imageInput.current])
 
   const onSubmit = useCallback(() => {
-    dispatch(addPost)
-    setText('')
-  }, [])
-
-  const onChangeText = useCallback((value: string) => {
-    setText(value)
-  }, [])
+    dispatch(addPost(text))
+  }, [text])
 
   return (
     <Form
