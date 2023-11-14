@@ -22,6 +22,26 @@ function* addPost(action) {
   }
 }
 
+function addCommentAPI(data) {
+  return axios.post('/api/comment', data)
+}
+
+function* addComment(action) {
+  try {
+    // const result = yield call(addPostAPI, action.data);
+    yield delay(2000)
+    yield put({
+      type: actionTypes.ADD_COMMENT_SUCCESS,
+      data: result.data,
+    })
+  } catch (err) {
+    yield put({
+      type: actionTypes.ADD_COMMENT_FAILURE,
+      error: err.response.data,
+    })
+  }
+}
+
 //  takeEvery instead take becasue take event listener only occurs once
 //  takeLatest only happens the last event when user accidently clicks twice
 
@@ -29,8 +49,13 @@ function* watchAddPost() {
   yield takeLatest(actionTypes.ADD_POST_REQUEST, addPost)
 }
 
+function* watchAddComment() {
+  yield takeLatest(actionTypes.ADD_COMMENT_REQUEST, addCOMMENT)
+}
+
 export default function* postSaga() {
   yield all([
-    fork(watchAddPost)
+    fork(watchAddPost),
+    fork(watchAddComment)
   ])
 }
