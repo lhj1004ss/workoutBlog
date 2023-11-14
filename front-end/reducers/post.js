@@ -19,10 +19,11 @@ export const initialState = {
       }],
     }],
   imagePaths: [],
-  postAdded: false,
+
   isPostAddedLoading: false,
   isPostAddedCompleted: false,
   isPostAddedError: null,
+
   isCommentAddedLoading: false,
   isCommentAddedCompleted: false,
   isCommentAddedError: null,
@@ -70,6 +71,7 @@ const reducer = (state = initialState, action) => {
         isPostAddedLoading: false,
         isPostAddedError: action.error,
       }
+
     // comment
     case actionTypes.ADD_COMMENT_REQUEST:
       return {

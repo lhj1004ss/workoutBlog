@@ -50,7 +50,7 @@ function* watchAddPost() {
 }
 
 function* watchAddComment() {
-  yield takeLatest(actionTypes.ADD_COMMENT_REQUEST, addCOMMENT)
+  yield takeLatest(actionTypes.ADD_COMMENT_REQUEST, addComment)
 }
 
 export default function* postSaga() {
