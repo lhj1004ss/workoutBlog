@@ -34,16 +34,16 @@ export const addPost = (data) => ({
   data,
 })
 
-const dummyPost = {
+const dummyPost = (data) => ({
   id: 2,
-  content: 'duppy post',
+  content: data,
   User: {
     id: 1,
     username: 'hyojelee'
   },
   Images: [],
   Comments: []
-}
+})
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -59,7 +59,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_POST_SUCCESS:
       return {
         ...state,
-        mainPosts: [dummyPost, ...state.mainPosts],
+        mainPosts: [dummyPost(action.data), ...state.mainPosts],
         isPostAddedLoading: false,
         isPostAddedCompleted: true,
       }
