@@ -5,17 +5,19 @@ import { addPost } from '../../reducers/post'
 import useInput from '../hooks/useInput'
 
 const PostForm = () => {
-  const { imagePaths, addPostDone } = useSelector((state) => state.post)
+  const { imagePaths, isPostAddedCompleted } = useSelector(
+    (state) => state.post
+  )
 
   const dispatch = useDispatch()
   const [text, onChangeText, setText] = useInput('')
   const imageInput = useRef()
 
   useEffect(() => {
-    if (addPostDone) {
+    if (isPostAddedCompleted) {
       setText('')
     }
-  }, [addPostDone])
+  }, [isPostAddedCompleted])
 
   const onChangeImageUpload = useCallback(() => {
     imageInput.current.click()
