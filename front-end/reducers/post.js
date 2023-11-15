@@ -1,4 +1,6 @@
 import { actionTypes } from "../constants/action"
+import shortId from 'shortid'
+
 export const initialState = {
   mainPosts:
     [{
@@ -35,7 +37,7 @@ export const addPost = (data) => ({
 })
 
 const dummyPost = (data) => ({
-  id: 2,
+  id: shortId.generate(),
   content: data,
   User: {
     id: 1,
