@@ -47,6 +47,15 @@ const dummyPost = (data) => ({
   Comments: []
 })
 
+const dummyComment = (data) => ({
+  id: shortId.generate(),
+  content: data,
+  User: {
+    id: 1,
+    username: 'hyoje lee comment'
+  }
+})
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     // post
@@ -83,16 +92,22 @@ const reducer = (state = initialState, action) => {
         isCommentAddedError: null,
       }
     case actionTypes.ADD_COMMENT_SUCCESS:
+      const postIdx = state.mainPosts.findIndex((v) => v.id === action.data.postId);
+      const post = { ...state.mainPosts[postIdx] }
+      post.Comments = [dummyComment(action.data.content), ...post.Comments];
+      const mainPosts = [...state.mainPosts];
+      mainPosts[postIdx] = post;
+
       return {
         ...state,
-        mainPosts: [dummyPost, ...state.mainPosts],
+        mainPosts,
         isCommentAddedLoading: false,
         isCommentAddedCompleted: true,
       }
     case actionTypes.ADD_COMMENT_FAILURE:
       return {
         ...state,
-        mainPosts: [dummyPost, ...state.mainPosts],
+        mainPosts: [dummyComment, ...post.Comments],
         isCommentAddedLoading: false,
         isCommentAddedError: action.error,
       }

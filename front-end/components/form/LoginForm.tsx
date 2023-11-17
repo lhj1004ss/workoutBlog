@@ -9,7 +9,7 @@ type Props = {}
 
 const LoginForm = ({}: Props) => {
   const dispatch = useDispatch()
-  const { isLoggingIn } = useSelector((state) => state.user)
+  const { isLoggedInLoading } = useSelector((state) => state.user)
   const [email, onChangeEmail] = useInput('')
   const [password, onChangePassword] = useInput('')
 
@@ -46,7 +46,7 @@ const LoginForm = ({}: Props) => {
         />
       </div>
       <ButtonWrapper style={{ marginTop: 10 }}>
-        <Button type='primary' htmlType='submit' loading={isLoggingIn}>
+        <Button type='primary' htmlType='submit' loading={isLoggedInLoading}>
           Login
         </Button>
         <Link href='/signup'>

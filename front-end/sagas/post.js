@@ -32,7 +32,7 @@ function* addComment(action) {
     yield delay(2000)
     yield put({
       type: actionTypes.ADD_COMMENT_SUCCESS,
-      data: result.data,
+      data: action.data,
     })
   } catch (err) {
     yield put({

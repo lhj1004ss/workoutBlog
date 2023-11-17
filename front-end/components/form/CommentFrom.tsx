@@ -8,26 +8,27 @@ type Props = {
   post: UserPost
 }
 
-const CommentForm = (post: Props) => {
+const CommentForm = ({ post }: Props) => {
   const { user } = useSelector((state) => state.user)
-  const { addCommentDone } = useSelector((state) => state.post)
+  const { isCommentAddedCompleted, isCommentAddedLoading } = useSelector(
+    (state) => state.post
+  )
   const dispatch = useDispatch()
-
   const [comment, onChangeComment, setCommentText] = useInput('')
 
   useEffect(() => {
-    if (addCommentDone) {
+    if (isCommentAddedCompleted) {
       setCommentText('')
     }
-  }, [addCommentDone])
+  }, [isCommentAddedCompleted])
 
   const onSubmitComment = useCallback(() => {
-    console.log('comment', post.id, comment)
     dispatch({
       type: 'ADD_COMMENT_REQUEST',
-      // data: { content: commentText, postId: post.id, userId, user.id },
+      data: { content: comment, postId: post?.id, userId: user?.id },
     })
-  }, [comment, user.id])
+  }, [comment, user?.id])
+
   return (
     <Form style={{ marginTop: 10 }} onFinish={onSubmitComment}>
       <Form.Item>
@@ -38,6 +39,7 @@ const CommentForm = (post: Props) => {
         <Button
           type='primary'
           htmlType='submit'
+          loading={isCommentAddedLoading}
           style={{ float: 'right', marginTop: 10 }}>
           Comment
         </Button>

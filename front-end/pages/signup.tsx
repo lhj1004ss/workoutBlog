@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const SignUp = () => {
   const dispatch = useDispatch()
-  const { signUpLoading } = useSelector((state) => state.user)
+  const { isSignedUpLoading } = useSelector((state) => state.user)
 
   const [password, onChangePassword] = useInput('')
   const [userName, onChangeUserName] = useInput('')
@@ -88,7 +88,7 @@ const SignUp = () => {
           htmlType='submit'
           style={{ marginTop: 10 }}
           type='primary'
-          loading={signUpLoading}>
+          loading={isSignedUpLoading}>
           SignUp
         </Button>
       </Form>

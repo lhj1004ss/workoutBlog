@@ -7,7 +7,7 @@ import { logoutRequestAction } from '../reducers/user'
 type Props = {}
 const Logout = () => {
   const dispatch = useDispatch()
-  const { isLoggingOut } = useSelector((state) => state.user)
+  const { isLoggedOutLoading } = useSelector((state) => state.user)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const logoutHandler = useCallback(() => {
@@ -16,7 +16,7 @@ const Logout = () => {
 
   return (
     <>
-      <Button loading={isLoggingOut} onClick={() => setIsModalOpen(true)}>
+      <Button loading={isLoggedOutLoading} onClick={() => setIsModalOpen(true)}>
         Logout
       </Button>
       <BasicModal

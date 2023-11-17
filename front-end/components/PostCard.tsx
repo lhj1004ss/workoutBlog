@@ -20,9 +20,9 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const { user } = useSelector((state) => state.user)
+  // const { user } = useSelector((state) => state.user)
   const [isLiked, setIsLiked] = useState(false)
   const [isCommentOpen, setIsCommentOpen] = useState(false)
-
   const onClickLike = useCallback(() => {
     setIsLiked((prev) => !prev)
   }, [])
@@ -30,11 +30,11 @@ const PostCard = ({ post }: Props) => {
   const onClickComment = useCallback(() => {
     setIsCommentOpen((prev) => !prev)
   }, [])
-
+  console.log('post card post', post, 'post id', post.id)
   return (
     <div style={{ marginBottom: 20 }}>
       <Card
-        cover={post.Images[0] && <PostImages images={post.Images} />}
+        cover={post.Images?.[0] && <PostImages images={post.Images} />}
         actions={[
           <RetweetOutlined key='retweet' />,
           isLiked ? (
@@ -49,7 +49,7 @@ const PostCard = ({ post }: Props) => {
             key='more'
             content={
               <Button.Group>
-                {user?.id === post.User.id ? (
+                {user?.id === post.User?.id ? (
                   <>
                     <Button>Edit</Button>
                     <Button>Remove</Button>
@@ -63,8 +63,8 @@ const PostCard = ({ post }: Props) => {
           </Popover>,
         ]}>
         <Card.Meta
-          avatar={<Avatar>{post.User.username[0]}</Avatar>}
-          title={post.User.username}
+          avatar={<Avatar>{post.User?.username[0]}</Avatar>}
+          title={post.User?.username}
           description={<PostCardContent postData={post.content} />}></Card.Meta>
       </Card>
 
@@ -78,10 +78,10 @@ const PostCard = ({ post }: Props) => {
             renderItem={(item) => (
               <List.Item style={{ marginBottom: 10 }}>
                 <List.Item.Meta
-                  title={item.User.username}
+                  title={item.User?.username}
                   description={item.content}
                   avatar={
-                    <Avatar>{item.User.username[0]}</Avatar>
+                    <Avatar>{item.User?.username[0]}</Avatar>
                   }></List.Item.Meta>
               </List.Item>
             )}></List>
