@@ -85,6 +85,31 @@ const reducer = (state = initialState, action) => {
         isPostAddedError: action.error,
       }
 
+    case actionTypes.REMOVE_POST_REQUEST:
+      return {
+        ...state,
+        isPostAddedLoading: true,
+        isPostAddedCompleted: false,
+        isPostAddedError: null,
+      }
+
+    case actionTypes.REMOVE_POST_SUCCESS:
+      return {
+        ...state,
+        mainPosts: state.mainPosts.filter((post) => post.id !== action.data),
+        isPostAddedLoading: false,
+        isPostAddedCompleted: true,
+      }
+
+    case actionTypes.REMOVE_POST_FAILURE:
+      return {
+        ...state,
+        mainPosts: [dummyPost, ...state.mainPosts],
+        isPostAddedLoading: false,
+        isPostAddedError: action.error,
+      }
+
+
     // comment
     case actionTypes.ADD_COMMENT_REQUEST:
       return {
@@ -94,7 +119,7 @@ const reducer = (state = initialState, action) => {
         isCommentAddedError: null,
       }
     case actionTypes.ADD_COMMENT_SUCCESS:
-      const postIdx = state.mainPosts.findIndex((v) => v.id === action.data.postId);
+      const postIdx = state.mainPosts.findIndex((post) => post.id === action.data.postId);
       const post = { ...state.mainPosts[postIdx] }
       post.Comments = [dummyComment(action.data.content), ...post.Comments];
       const mainPosts = [...state.mainPosts];

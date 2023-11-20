@@ -123,6 +123,15 @@ const reducer = (state = initialState, action) => {
         }
       }
     }
+    case actionTypes.REMOVE_POST_OF_USER: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          Posts: state.user.Posts.filter((post) => post.id !== action.data)
+        }
+      }
+    }
 
     default:
       return state;

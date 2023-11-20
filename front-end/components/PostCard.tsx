@@ -8,11 +8,12 @@ import {
 } from '@ant-design/icons'
 import { Card, Popover, Button, Avatar, List } from 'antd'
 import { useCallback } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { UserPost } from '../constants/type'
 import PostImages from './PostImages'
 import CommentForm from './form/CommentFrom'
 import PostCardContent from './PostCardContent'
+import { actionTypes } from '../constants/action'
 
 type Props = {
   post: UserPost
@@ -20,14 +21,23 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const { user } = useSelector((state) => state.user)
+  const dispatch = useDispatch()
   const [isLiked, setIsLiked] = useState(false)
   const [isCommentOpen, setIsCommentOpen] = useState(false)
+
   const onClickLike = useCallback(() => {
     setIsLiked((prev) => !prev)
   }, [])
 
   const onClickComment = useCallback(() => {
     setIsCommentOpen((prev) => !prev)
+  }, [])
+
+  const onRemovePost = useCallback(() => {
+    dispatch({
+      type: actionTypes.REMOVE_POST_REQUEST,
+      data: post.id,
+    })
   }, [])
 
   return (
@@ -51,7 +61,7 @@ const PostCard = ({ post }: Props) => {
                 {user?.id === post.User?.id ? (
                   <>
                     <Button>Edit</Button>
-                    <Button>Remove</Button>
+                    <Button onClick={onRemovePost}>Remove</Button>
                   </>
                 ) : (
                   <Button>Report</Button>
