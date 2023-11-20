@@ -17,6 +17,22 @@ export const initialState = {
   signUpData: {},
   loginData: {}
 }
+const dummyUser = (data) => ({
+  ...data,
+  username: 'hyojelee',
+  id: 1,
+  Posts: [],
+  Followings: [{
+    username: 'random 1'
+  }, { username: 'random 2' }
+    , { username: 'random 3' }
+  ],
+  Followers: [{
+    username: 'random 1'
+  }, { username: 'random 2' }
+
+  ]
+})
 
 export const loginRequestAction = (data) => {
   return {
@@ -44,7 +60,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedInLoading: false,
         isLoggedInCompleted: true,
-        user: { ...action.data, username: "hyoje lee test", id: 1, Posts: [], Followings: [], Followers: [] },
+        // user: { ...action.data, username: "hyoje lee test", id: 1, Posts: [], Followings: [], Followers: [] },
+        user: dummyUser(action.data),
       }
     case actionTypes.LOG_IN_FAILURE:
       return {

@@ -20,7 +20,6 @@ type Props = {
 
 const PostCard = ({ post }: Props) => {
   const { user } = useSelector((state) => state.user)
-  // const { user } = useSelector((state) => state.user)
   const [isLiked, setIsLiked] = useState(false)
   const [isCommentOpen, setIsCommentOpen] = useState(false)
   const onClickLike = useCallback(() => {
@@ -30,7 +29,7 @@ const PostCard = ({ post }: Props) => {
   const onClickComment = useCallback(() => {
     setIsCommentOpen((prev) => !prev)
   }, [])
-  console.log('post card post', post, 'post id', post.id)
+
   return (
     <div style={{ marginBottom: 20 }}>
       <Card

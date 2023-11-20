@@ -4,13 +4,14 @@ import shortId from 'shortid'
 export const initialState = {
   mainPosts:
     [{
-      id: 2,
-      User: { id: 2, username: "diffent" },
+      id: 1,
+      User: { id: 1, username: "hyojelee" },
       content: "initial dummy data #hash #hello #hi",
       Images: [
-        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
-        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
-        { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
+
+        { id: 1, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
+        { id: 2, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
+        { id: 3, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
       ],
       Comments: [{
         User: { username: 'username2', id: 2 },

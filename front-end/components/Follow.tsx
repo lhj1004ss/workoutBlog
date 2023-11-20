@@ -13,6 +13,7 @@ const SearchInput = styled(Input.Search)`
 
 const Follow = ({ title, header, follow }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  console.log('number of follow', follow)
   return (
     <>
       <div onClick={() => setIsModalOpen(true)}>
