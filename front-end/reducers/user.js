@@ -21,7 +21,7 @@ const dummyUser = (data) => ({
   ...data,
   username: 'hyojelee',
   id: 1,
-  Posts: [],
+  Posts: [{ id: 1 }],
   Followings: [{
     username: 'random 1'
   }, { username: 'random 2' }
@@ -60,7 +60,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedInLoading: false,
         isLoggedInCompleted: true,
-        // user: { ...action.data, username: "hyoje lee test", id: 1, Posts: [], Followings: [], Followers: [] },
         user: dummyUser(action.data),
       }
     case actionTypes.LOG_IN_FAILURE:
@@ -112,6 +111,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         isSignedUpLoading: false,
         isSignedUpError: action.error,
+      }
+    }
+    case actionTypes.ADD_POST_TO_USER: {
+      return {
+        ...state,
+
+        user: {
+          ...state.user,
+          Posts: [{ id: action.data }, ...state.user.Posts],
+        }
       }
     }
 

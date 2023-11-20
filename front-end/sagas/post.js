@@ -1,6 +1,7 @@
 import { all, takeLatest, put, fork, delay } from "redux-saga/effects";
 import axios from 'axios';
 import { actionTypes } from '../constants/action'
+import shortId from 'shortid'
 
 function addPostAPI(data) {
   return axios.post('/api/post', data)
@@ -10,14 +11,24 @@ function* addPost(action) {
   try {
     // const result = yield call(addPostAPI, action.data);
     yield delay(2000)
+
+    const id = shortId.generate()
     yield put({
       type: actionTypes.ADD_POST_SUCCESS,
-      data: action.data,
+      data: {
+        id,
+        content: action.data
+      },
+    })
+    yield put({
+      type: actionTypes.ADD_POST_TO_USER,
+      data: id,
     })
   } catch (err) {
+    console.log('addpost error', err)
     yield put({
       type: actionTypes.ADD_POST_FAILURE,
-      error: err.response.data,
+      // error: err.response.data,
     })
   }
 }

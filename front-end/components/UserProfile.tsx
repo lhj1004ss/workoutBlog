@@ -15,7 +15,7 @@ const UserProfile = ({}) => {
         <div key='post'>
           posts
           <br />
-          <span>0</span>
+          <span>{user.Posts.length}</span>
         </div>,
         <Follow
           key='followings'

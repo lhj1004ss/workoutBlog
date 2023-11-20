@@ -8,15 +8,16 @@ export const initialState = {
       User: { id: 1, username: "hyojelee" },
       content: "initial dummy data #hash #hello #hi",
       Images: [
-
         { id: 1, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
         { id: 2, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
         { id: 3, src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Nagalapuram_Hill_Streams1.jpg/737px-Mapcarta.jpg" },
       ],
       Comments: [{
+        id: shortId.generate(),
         User: { username: 'username2', id: 2 },
         content: 'amazing!!!'
       }, {
+        id: shortId.generate(),
         User: { username: 'username3', id: 3 },
         content: 'awesome!!!'
       }],
@@ -38,8 +39,8 @@ export const addPost = (data) => ({
 })
 
 const dummyPost = (data) => ({
-  id: shortId.generate(),
-  content: data,
+  id: data.id,
+  content: data.content,
   User: {
     id: 1,
     username: 'hyojelee'
